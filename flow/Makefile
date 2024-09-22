@@ -386,6 +386,11 @@ $(1) $(2) &:
 endif
 endef
 
+#Target to print name and value of configuration variable for debugging
+.PHONY: print_all_env_cfg
+print_all_env_cfg:
+	env | sed -e 's/^\s*//' |sort -u > $(WORK_HOME)/all_config_vars.txt
+
 # Targets to harden Blocks in case of hierarchical flow is triggered
 .PHONY: build_macros
 build_macros: $(BLOCK_LEFS) $(BLOCK_LIBS)
